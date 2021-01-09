@@ -16,6 +16,7 @@ public:
 	string toString();
 	int dropChip(Chip drop, int slot);
 	int isWinner();
+	void resetColumns();
 };
 
 #endif

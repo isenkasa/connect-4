@@ -1,15 +1,23 @@
+/**
+* Connect Four Game created utilizing object-oriented C++.
+* Author: Isen K.
+*/
+
 #include"Chip.h"
 #include"Board.h"
 #include"Player.h"
 
 const int PLAYER_MAX = 2;
 
+// Controls operation of the program
 int main()
 {
 	int game = 1;
 
 	while (game == 1)
 	{
+		// Initialization of the class objects needed for the game
+
 		Player p[PLAYER_MAX];
 
 		p[0].setName("Player 1");
@@ -20,6 +28,8 @@ int main()
 		Chip goldChip(GOLD);
 
 		cout << "Connect Four Game!" << endl << endl;
+
+		// Select the Colors
 
 		int choice;
 		cout << "Select the color for Player 1 (1 for RED, 2 for GOLD): ";
@@ -50,16 +60,18 @@ int main()
 		cout << gameBoard.toString() << endl;
 		int signal = 0;
 
+		// Gameplay
+
 		while (gameBoard.isWinner() != 0 && gameBoard.isWinner() != 1 && gameBoard.isWinner() != 2)
 		{
 			unsigned seed;
 
+			// Random player selection to begin the game
 			cout << "Player " << (signal % 2) + 1 << " turn:" << endl;
 
 			seed = time(0);
 			srand(seed);
 
-			// Player 1
 			if ((signal % 2) == 0)
 			{
 				Chip gameChip(p[0].getColor());
@@ -68,6 +80,7 @@ int main()
 				cout << "Enter the slot number you want to insert your chip in: ";
 				cin >> slot;
 
+				// Handle error
 				if (gameBoard.dropChip(gameChip, slot) == 0)
 				{
 					while (gameBoard.dropChip(gameChip, slot) == 0)
@@ -91,6 +104,7 @@ int main()
 				cout << "Enter the slot number you want to insert your chip in: ";
 				cin >> slot;
 
+				// Handle error
 				if (gameBoard.dropChip(gameChip, slot) == 0)
 				{
 					while (gameBoard.dropChip(gameChip, slot) == 0)
@@ -110,6 +124,8 @@ int main()
 			signal++;
 		}
 
+		// Check if there is a winner or draw
+
 		if (gameBoard.isWinner() == 0)
 		{
 			cout << "There are no winners!" << endl;
@@ -127,6 +143,7 @@ int main()
 		cout << "If you wish to play again, enter 1. If you wish to quit the game, enter a different number. Input: ";
 		cin >> playAgain;
 
+		// Play again? (1 for yes, anything else for no)
 		game = playAgain;
 	}
 

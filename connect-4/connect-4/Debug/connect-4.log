@@ -1,9 +1,7 @@
 ﻿  Board.cpp
   Chip.cpp
-  gamedriver.cpp
-C:\Users\cenik\Desktop\dev\connect-4\connect-4\connect-4\gamedriver.cpp(59,15): warning C4244: '=': conversion from 'time_t' to 'unsigned int', possible loss of data
   Player.cpp
   Generating Code...
-C:\Users\cenik\Desktop\dev\connect-4\connect-4\connect-4\Board.cpp(145): warning C4715: 'Board::dropChip': not all control paths return a value
-C:\Users\cenik\Desktop\dev\connect-4\connect-4\connect-4\Board.cpp(369): warning C4715: 'Board::isWinner': not all control paths return a value
+C:\Users\cenik\Desktop\dev\connect-4\connect-4\connect-4\Board.cpp(167): warning C4715: 'Board::dropChip': not all control paths return a value
+C:\Users\cenik\Desktop\dev\connect-4\connect-4\connect-4\Board.cpp(330): warning C4715: 'Board::isWinner': not all control paths return a value
   connect-4.vcxproj -> C:\Users\cenik\Desktop\dev\connect-4\connect-4\Debug\connect-4.exe

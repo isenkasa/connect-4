@@ -8,6 +8,7 @@ int Board::fifthColumn = 5;
 int Board::sixthColumn = 5;
 int Board::seventhColumn = 5;
 
+// Constructor that initializes the board places all to BLANK
 Board::Board()
 {
 	for (int i = 0; i < ROWS; i++)
@@ -19,6 +20,11 @@ Board::Board()
 	}
 }
 
+/**
+* Converts Chip Color to string
+* 
+* @return string of chip color
+*/
 string Board::toString()
 {
 	string str, modifiedStr = "";
@@ -43,12 +49,22 @@ string Board::toString()
 	return modifiedStr;
 }
 
+/**
+* Simulates the drop of the Chip into the Board
+* 
+* @param drop is the chip being dropped
+* @param slot is the slot in which the chip goes
+* 
+* @return 0 for failure, 1 for success
+*/
 int Board::dropChip(Chip drop, int slot)
 {
+	// Drop in the first slot
 	if (slot == 1)
 	{
 		if (firstColumn < 0)
 		{
+			// Failure, column can't be negative
 			return 0;
 		}
 		else
@@ -59,6 +75,7 @@ int Board::dropChip(Chip drop, int slot)
 		}
 	}
 
+	// Drop in the second slot
 	if (slot == 2)
 	{
 		if (secondColumn < 0)
@@ -73,6 +90,7 @@ int Board::dropChip(Chip drop, int slot)
 		}
 	}
 
+	// Drop in the third slot
 	if (slot == 3)
 	{
 		if (thirdColumn < 0)
@@ -87,6 +105,7 @@ int Board::dropChip(Chip drop, int slot)
 		}
 	}
 
+	// Drop in the fourth slot
 	if (slot == 4)
 	{
 		if (fourthColumn < 0)
@@ -101,6 +120,7 @@ int Board::dropChip(Chip drop, int slot)
 		}
 	}
 
+	// Drop in the fifth slot
 	if (slot == 5)
 	{
 		if (fifthColumn < 0)
@@ -115,6 +135,7 @@ int Board::dropChip(Chip drop, int slot)
 		}
 	}
 
+	// Drop in the sixth slot
 	if (slot == 6)
 	{
 		if (sixthColumn < 0)
@@ -129,6 +150,7 @@ int Board::dropChip(Chip drop, int slot)
 		}
 	}
 
+	// Drop in the seventh slot
 	if (slot == 7)
 	{
 		if (seventhColumn < 0)
@@ -144,6 +166,11 @@ int Board::dropChip(Chip drop, int slot)
 	}
 }
 
+/**
+* Determines if there is a winner or if the match has ended on a draw
+* 
+* @return 0 if it is a draw, 1 if Player 1 wins, 2 if Player 2 wins
+*/
 int Board::isWinner()
 {
 	// NO WINNER CASE
@@ -161,14 +188,7 @@ int Board::isWinner()
 
 					if (count == TOTAL_SPACES)
 					{
-						firstColumn = 5;
-						secondColumn = 5;
-						thirdColumn = 5;
-						fourthColumn = 5;
-						fifthColumn = 5;
-						sixthColumn = 5;
-						seventhColumn = 5;
-
+						resetColumns();
 						return 0;
 					}
 				}
@@ -177,33 +197,24 @@ int Board::isWinner()
 		}
 	}
 
-	// PLAYER 1 WINNER CASE
+	// Determining the Winner
+
 	// horizontal
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
+			// RED WINS 
 			if ((chips[i][j].getColor() + chips[i][j + 1].getColor() + chips[i][j + 2].getColor() + chips[i][j + 3].getColor()) == RED_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 1;
 			}
 
+			// GOLD WINS 
 			if ((chips[i][j].getColor() + chips[i][j + 1].getColor() + chips[i][j + 2].getColor() + chips[i][j + 3].getColor()) == GOLD_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 2;
 			}
 		}
@@ -214,27 +225,17 @@ int Board::isWinner()
 	{
 		for (int j = 0; j < 3; j++)
 		{
+			// RED WINS 
 			if ((chips[j][i].getColor() + chips[j + 1][i].getColor() + chips[j + 2][i].getColor() + chips[j + 3][i].getColor()) == RED_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 1;
 			}
 
+			// GOLD WINS 
 			if ((chips[j][i].getColor() + chips[j + 1][i].getColor() + chips[j + 2][i].getColor() + chips[j + 3][i].getColor()) == GOLD_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 2;
 			}
 		}
@@ -245,27 +246,17 @@ int Board::isWinner()
 	{
 		for (int j = 0; j < 3; j++)
 		{
+			// RED WINS 
 			if ((chips[i][j].getColor() + chips[i + 1][j + 1].getColor() + chips[i + 2][j + 2].getColor() + chips[i + 3][j + 3].getColor()) == RED_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 1;
 			}
 
+			// GOLD WINS 
 			if ((chips[i][j].getColor() + chips[i + 1][j + 1].getColor() + chips[i + 2][j + 2].getColor() + chips[i + 3][j + 3].getColor()) == GOLD_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 2;
 			}
 		}
@@ -278,27 +269,17 @@ int Board::isWinner()
 		{
 			for (int j = 0; j < 3; j++)
 			{
+				// RED WINS 
 				if ((chips[i][j].getColor() + chips[i + 1][j + 1].getColor() + chips[i + 2][j + 2].getColor() + chips[i + 3][j + 3].getColor()) == RED_TOTAL)
 				{
-					firstColumn = 5;
-					secondColumn = 5;
-					thirdColumn = 5;
-					fourthColumn = 5;
-					fifthColumn = 5;
-					sixthColumn = 5;
-					seventhColumn = 5;
+					resetColumns();
 					return 1;
 				}
 
+				// GOLD WINS 
 				if ((chips[i][j].getColor() + chips[i + 1][j + 1].getColor() + chips[i + 2][j + 2].getColor() + chips[i + 3][j + 3].getColor()) == GOLD_TOTAL)
 				{
-					firstColumn = 5;
-					secondColumn = 5;
-					thirdColumn = 5;
-					fourthColumn = 5;
-					fifthColumn = 5;
-					sixthColumn = 5;
-					seventhColumn = 5;
+					resetColumns();
 					return 2;
 				}
 			}
@@ -310,27 +291,17 @@ int Board::isWinner()
 	{
 		for (int j = 0; j < 4; j++)
 		{
+			// RED WINS 
 			if ((chips[i][j].getColor() + chips[i - 1][j + 1].getColor() + chips[i - 2][j + 2].getColor() + chips[i - 3][j + 3].getColor()) == RED_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 1;
 			}
 
+			// GOLD WINS 
 			if ((chips[i][j].getColor() + chips[i - 1][j + 1].getColor() + chips[i - 2][j + 2].getColor() + chips[i - 3][j + 3].getColor()) == GOLD_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 2;
 			}
 		}
@@ -341,29 +312,31 @@ int Board::isWinner()
 	{
 		for (int j = 3; j < COLUMNS; j++)
 		{
+			// RED WINS 
 			if ((chips[i][j].getColor() + chips[i - 1][j - 1].getColor() + chips[i - 2][j - 2].getColor() + chips[i - 3][j - 3].getColor()) == RED_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 1;
 			}
 
+			// GOLD WINS 
 			if ((chips[i][j].getColor() + chips[i - 1][j - 1].getColor() + chips[i - 2][j - 2].getColor() + chips[i - 3][j - 3].getColor()) == GOLD_TOTAL)
 			{
-				firstColumn = 5;
-				secondColumn = 5;
-				thirdColumn = 5;
-				fourthColumn = 5;
-				fifthColumn = 5;
-				sixthColumn = 5;
-				seventhColumn = 5;
+				resetColumns();
 				return 2;
 			}
 		}
 	}
+}
+
+// Resets the columns to their initial state
+void Board::resetColumns()
+{
+	firstColumn = 5;
+	secondColumn = 5;
+	thirdColumn = 5;
+	fourthColumn = 5;
+	fifthColumn = 5;
+	sixthColumn = 5;
+	seventhColumn = 5;
 }
