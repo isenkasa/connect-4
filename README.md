@@ -1,4 +1,4 @@
-# connect-4
+# Connect Four
 
 Connect Four game developed in C++ using Object Oriented principles.
 
