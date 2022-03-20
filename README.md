@@ -16,6 +16,9 @@ g++ -std=c++14 -o connect-4 gamedriver.o Board.o Chip.o Player.o
 ./connect-4
 ```
 
+## Video demo
+Link: https://youtu.be/tUb1y23Y5f0
+
 ## General description of the source files
 - Chip.h contains the Chip class definition and functions.
 - Chip.cpp contains the Chip class implementation.
